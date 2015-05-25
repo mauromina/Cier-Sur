@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib import admin
 # Create your models here.
 
+class BodyPanelAdmin(models.Model):
+#Esta clase contiene la forma como sera mostrada la pantalle principal a los usuarios
+	Title = models.CharField(max_length = 30)
+	Body = models.TextField()
+
+	
 class persona(models.Model):
 	#Constructor por defecto
 	def __unicode__(self):
