@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Crear Nuevo Aspirante
+</title>
+<link href="css/estillo.css" rel="stylesheet" type="text/css" />
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+</head>
+
+<body class="body">
+<div id="centroPanel">
+  <div id="Banner">
+    <div id="MenuUser"><a href="AddAspitante.html"><img src="Recursos/sign-up.png" width="56" height="56" alt="Usuario" /></a></div>
+    <div id="TextConfig"><a href="config.html">Configuración</a></div>
+    <div id="menuConfig"><a href="config.html"><img src="Recursos/config.png" width="60" height="58" alt="config" /></a></div>
+    <div id="AddUser"><a href="AddAspitante.html">Inscribirse</a></div>
+<div id="apDiv2"><a href="index.html"><img src="Recursos/logo_tribal_banner.png" width="188" height="90" alt="Tribal System" /></a></div>
+  </div>
+  <div id="CuerpoText"> <strong id="docs-internal-guid-38d814e7-d357-93f8-4477-bccc5bfa7d9d">SGC-HYDRA</strong>
+    <p>Bienvenido a su sistema de gestion de cursos.</p>
+    <div id="parrafo">
+      <form id="AddEstudiante" name="AddEstudiante" method="post" action= "UserPrincipal.html">
+      <h1>Inscribirse como Aspirante</h1>
+        <p>
+          <label for="name">Nombre:</label> 
+          <span id="sprytextfield1">
+         
+          <input type="text" name="name" id="name" size="35" placeholder= "Ingrese su nombre" />
+        <span class="textfieldRequiredMsg">Se necesita su nombre.</span></span></p>
+        <p>
+          <label for="lastname">Apellidos:</label> 
+          <span id="sprytextfield2">
+      
+          <input type="text" name="lastname" id="lastname"  size="33" placeholder= "Ingrese sus apellidos" />
+        <span class="textfieldRequiredMsg">Se necesita sus apellidos.</span></span>        </p>
+        <p>
+          <label for="email">Correo Electronico:</label>
+          <span id="sprytextfield3">
+          
+          <input type="text" name="email" id="email" size="23" placeholder= "Ingrese su Email"/>
+        <span class="textfieldRequiredMsg">Se necesita su Email.</span></span></p>
+        <p>
+          <label for="Identificatión">N0 Identificacion:</label>
+
+          <span id="sprytextfield4">
+          <label for="identification"></label>
+          <input type="text" name="identification" id="identification"  size=25 placeholder= "Numero de identificaion"/>
+        <span class="textfieldRequiredMsg">Se necesita su identificacíon.</span></span></p>
+        <p>
+          <label for="addres">Dirección:</label>
+          <span id="sprytextfield5">
+          
+          <input type="text" name="addres" id="addres" size="33" placeholder= "Direccion de residencia" />
+        <span class="textfieldRequiredMsg">Se necesita su dirección.</span></span></p>
+       <p>
+       	<label for="password">Contraseña:</label>
+        <input type="password" max-length = 20 placeholder= " Ingrese Su contraseña" id="password"/> </p>
+       	
+        <label for="departamento">Departamento:</label>
+        <select name="Departamento" id="departamento">
+          <option>Valle del Cauca</option>
+          <option>Choco</option>
+        </select> 
+        
+        <label for="city"><br />
+          <br /> 
+        Ciudad:</label>
+        <select name="Departamento" id="city">
+          <option>Cali</option>
+          <option>Buga</option>
+          <option>Buenaventura</option>
+        </select> 
+        <p>
+          <input type="submit" name="enviar" id="enviar" value="Crear Usuario" />
+        </p>          
+      </form>
+    </div>
+  </div>
+  
+</div>
+<script type="text/javascript">
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
+var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
+var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
+var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
+var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5");
+</script>
+</body>
+</html>
