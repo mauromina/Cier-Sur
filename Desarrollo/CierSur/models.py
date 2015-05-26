@@ -1,155 +1,89 @@
 from django.db import models
 from django.contrib import admin
 # Create your models here.
+#Construido Por Mauro Castillo 
 
+
+
+
+#Lo construi para realizar pruebas con los Temples
 class BodyPanelAdmin(models.Model):
 #Esta clase contiene la forma como sera mostrada la pantalle principal a los usuarios
+	def __unicode__(self):
+		return self
 	Title = models.CharField(max_length = 30)
 	Body = models.TextField()
 
+class DataPerson(models.Model):
+	def __unicode__(self):
+		return self
+	#datos personales
+	#indentificador primario base de datos
+	id = models.AutoField(primary_key=True)
+	numero_identificacion = models.CharField(max_length = 30)
+   	nombre = models.CharField(max_length = 30)
+	apellido = models.CharField(max_length = 30)
+	fecha_de_Nacimiento = models.DateTimeField()
+	departemento = models.IntegerField() # son llaves foraneas a la ubicion
+	municipio =	models.ForeignKey('Municipio') #Son llaves foraneas a la ubicaion 
+	residencia = models.ForeignKey('Departamento')
+	 # creo llave foranea a departamento
+class AcademicHystory(models.Model):
+#Historial academico este historial es enlazado como foren key a una persona
+	def __unicode__(self):
+		return self
+	idDataPerson = models.IntegerField() # son llaves foraneas a la DataPerson
+	TitleName = models.CharField(max_length = 30)
+	DateStart = models.DateTimeField()
+	DateEnd = models.DateTimeField()
+	InstitutionName = models.CharField(max_length = 120)
+	Descripcion = models.TextField();
 	
-class persona(models.Model):
-	#Constructor por defecto
+class WorkHistory(models.Model):
+	#History laboral va enlazado con el id de los datos personsales
 	def __unicode__(self):
-              return self.nombre
-	cedula = models.CharField(max_length = 50 , primary_key = True)
-	nombre = models.CharField(max_length = 50)
-	apellidos = models.CharField(max_length = 50)
-	correo = models.CharField(max_length = 50)
-	celular = models.CharField(max_length = 50)
-	direccion = models.CharField(max_length = 50)
-	sexo = models.CharField(max_length = 10)
-	fecha = models.DateTimeField()
-
-class login(models.Model):
-		#Constructor por defecto
+		return self
+	idDataPerson = models.IntegerField() # son llaves foraneas a la DataPerson
+	WorkLocalitation =  models.CharField(max_length = 30)
+	DateStart = models.DateTimeField()
+	DateEnd = models.DateTimeField()
+class Course(models.Model):
 	def __unicode__(self):
-              return self
-	id_cedula = models.ForeignKey('persona')
-	password = models.CharField(max_length = 20)
-	tipo = models.CharField(max_length = 10)
+		return self
+	idTeacher = models.IntegerField() # Llave a profesor del curso
+	CourseName = models.CharField(max_length = 30)
+	DateStart = models.DateTimeField()
+	DateEnd = models.DateTimeField()
 
-class aspirante(models.Model):
-		#Constructor por defecto
-	def __unicode__(self):
-              return self
-
-	id_persona = models.ForeignKey('persona')
-	sede = models.CharField(max_length = 50)
-	institucion = models.CharField(max_length = 50)
-	codigo = models.CharField(max_length = 20)
-	grado = models.CharField(max_length = 20)
-	secretaria = models.CharField(max_length = 20)
-	nombreMunicipio = models.ForeignKey('municipio')
-	area = models.CharField(max_length = 50)
-	activoAspirante = models.BooleanField()
-	#usuarioca = models.BooleanField(False)
-
-class docente(models.Model):
-		#Constructor por defecto
-	def __unicode__(self):
-              return self
-	id_cedula = models.ForeignKey('persona')
-	tipo = models.CharField(max_length = 10)
-
-class historial(models.Model):
-		#Constructor por defecto
-	def __unicode__(self):
-              return self
-	i_cedula = models.IntegerField()
-	zona = models.CharField(max_length = 20)
-	modalidad = models.CharField(max_length = 20)
-	especilaidades = models.CharField(max_length = 100)
-	etnias = models.CharField(max_length = 100)
-	niveles = models.CharField(max_length = 100)
-	grados = models.CharField(max_length = 50)
-	areas = models.CharField(max_length = 100)
-	niveledu= models.CharField(max_length = 30)
-
-class experiencia(models.Model):
-		#Constructor por defecto
-	def __unicode__(self):
-              return self
-	id_cedula = models.IntegerField()
-	preescolar = models.IntegerField()
-	primaria = models.IntegerField()
-	secundaria = models.IntegerField()
-	media = models.IntegerField()
-	superior = models.IntegerField()
-	rural = models.IntegerField()
-	urbano = models.IntegerField()
-	publico = models.IntegerField()
-	privado = models.IntegerField()
-	total = models.IntegerField()
-
-class curso(models.Model):
-		#Constructor por defecto
-	def __unicode__(self):
-              return self.nombre
-	id_cedula = models.IntegerField()
-	nombre = models.CharField(max_length = 50)
-	semestre = models.CharField(max_length = 50)
-
-
-
-class cohorte(models.Model):
-		#Constructor por defecto
-	def __unicode__(self):
-              return self
-	id_curso = models.IntegerField()
-	inicio = models.DateTimeField()
-	fin = models.DateTimeField()
-
-class actividad(models.Model):
-		#Constructor por defecto
-	def __unicode__(self):
-              return self.nombre
-	id_curso = models.IntegerField()
-	nombre = models.CharField(max_length = 50)
-
-class nota(models.Model):
-		#Constructor por defecto
-	def __unicode__(self):
-              return self
-	id_cohorte = models.IntegerField()
-	id_estudiante =  models.ForeignKey('docente')
-	id_actividad =  models.ForeignKey('actividad')
-	nota = models.IntegerField()
-
-class departamento(models.Model):
-		#Constructor por defecto
-	def __unicode__(self):
-              return self
-	iddepartamento = models.IntegerField()
-	nombre = models.CharField(max_length = 50)
-
-class departamento(models.Model):
+#Informacion regional mauricio Castillo
+class Departamento(models.Model):
 		#Constructor por defecto
 	def __unicode__(self):
               return self
 	iddepartamento = models.CharField(max_length = 50)
 	nombre = models.CharField(max_length = 50)
 
-class municipio(models.Model):
+class Municipio(models.Model):
 		#Constructor por defecto
 	def __unicode__(self):
               return self.nombreMunicipio
 	idmunicipio = models.CharField(max_length = 50)
 	nombreMunicipio = models.CharField(max_length = 50)
 	departamento_iddepartamento = models.CharField(max_length = 50)
+#Fin informacion regional
 
 
 
-#Agregar al Panel
-admin.site.register(municipio)
-admin.site.register(departamento)
-admin.site.register(nota)
-admin.site.register(actividad)
-admin.site.register(cohorte)
-admin.site.register(experiencia)
-admin.site.register(historial)
-admin.site.register(docente)
-admin.site.register(aspirante)
-admin.site.register(login)
-admin.site.register(persona)
-admin.site.register(curso)
+		
+class MainPost(admin.ModelAdmin):
+	lis_display = ('Title','Body') 
+
+#Agrego el modelo al panel de administracion
+admin.site.register(Departamento)
+admin.site.register(Municipio)
+admin.site.register(BodyPanelAdmin, MainPost)
+admin.site.register(AcademicHystory)
+admin.site.register(WorkHistory)
+admin.site.register(Course)
+admin.site.register(DataPerson)
+
