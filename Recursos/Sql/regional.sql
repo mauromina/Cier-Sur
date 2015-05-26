@@ -1224,3 +1224,36 @@ INSERT INTO `ciersur_month`(`month`) VALUES ("9");
 INSERT INTO `ciersur_month`(`month`) VALUES ("10");
 INSERT INTO `ciersur_month`(`month`) VALUES ("11");
 INSERT INTO `ciersur_month`(`month`) VALUES ("12");
+
+INSERT INTO `ciersur_sex`(`sex`) VALUES ("Masculino");
+INSERT INTO `ciersur_sex`(`sex`) VALUES ("Femenino");
+
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Buenaventura");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Amazonas");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Buga");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Cali");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Caqueta");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Cartago");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Cauca");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Florencias");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Huila");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Ibage");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Ipiales");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Jamundi");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Nariño");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Neiva");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Palmira");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Pasto");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Pitalito"); 
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Popayan");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Putumayo");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Tolima");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Tulua");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Tumaco");
+INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Valle de Cauca");
+
+INSERT INTO `ciersur_areas`(`areas`) VALUES ("Matematicas");
+INSERT INTO `ciersur_areas`(`areas`) VALUES ("Educacion Ambiental (incluye Fisica,Biologia,Quimica)");
+INSERT INTO `ciersur_areas`(`areas`) VALUES ("Lenguaje (Lengua Castellana, Idiomas Extranjeros, Humanidades)");
+INSERT INTO `ciersur_areas`(`areas`) VALUES ("Informatica");
+INSERT INTO `ciersur_areas`(`areas`) VALUES ("Otras");

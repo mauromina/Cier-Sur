@@ -27,10 +27,17 @@ class DataPerson(models.Model):
 	year_de_Nacimiento = models.ForeignKey('Year')
 	dia_de_Nacimiento = models.ForeignKey('Day')
 	mes_de_Nacimiento = models.ForeignKey('Month')
-
+	sexo = models.ForeignKey('Sex')	
 	departemento = models.ForeignKey('Departamento') # son llaves foraneas a la ubicion
 	municipio =	models.ForeignKey('Municipio') #Son llaves foraneas a la ubicaion 
 	residencia = models.CharField(max_length = 30)
+	sede_a_la_que_pertenece = models.CharField(max_length = 30)
+	institucion_a_la_que_pertenece = models.CharField(max_length = 30)
+	grado = models.CharField(max_length = 30)
+	secretaria_de_educacion = models.ForeignKey('EducationSecretary')
+	area_de_inscripcion = models.ForeignKey('Areas')
+	tiene_usuario_Colombia_Aprende = models.BooleanField()
+
 	 # creo llave foranea a departamento
 class AcademicHystory(models.Model):
 #Historial academico este historial es enlazado como foren key a una persona
@@ -91,6 +98,22 @@ class Month(models.Model):
 	def __unicode__(self):
 		return self.month
 	month = models.CharField(max_length = 50)
+
+class Sex(models.Model):
+		#Constructor por defecto
+	def __unicode__(self):
+		return self.sex
+	sex = models.CharField(max_length = 50)
+
+class EducationSecretary(models.Model):
+	def __unicode__(self):
+		return self.secretary
+	secretary = models.CharField(max_length = 30)
+
+class Areas(models.Model):
+	def __unicode__(self):
+		return self.areas
+	areas = models.CharField(max_length = 30)
 
 #Fin informacion regional
 
