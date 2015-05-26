@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from CierSur.models import DataPerson
+from CierSur.models import AcademicHystory
 
 class  DataPersonForm(forms.Form):
 	cedula = forms.CharField(max_length = 50)
@@ -18,3 +19,8 @@ class NewDataperson(ModelForm):
 		model = DataPerson
 		fields = '__all__'
 
+
+class NewAcademicHystory(ModelForm):
+	class Meta:
+		model = AcademicHystory
+		fields = '__all__'

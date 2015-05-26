@@ -4,13 +4,15 @@ from django.template import loader, Context
 from django.http import HttpResponse
 from CierSur.models import *
 from .forms import NewDataperson
-from .forms import DataPersonForm
+from .forms import NewAcademicHystory
 
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 
 
 # Create your views here.
+#Variables
+#DataPerson objDataperson
 
 class HomeView(TemplateView):
 	template_name = 'home.html'
@@ -26,8 +28,10 @@ def addDataPersonForm(request):
 	if request.method == 'POST':
   		form = NewDataperson(request.POST)
   		if form.is_valid():
+  			#objDataperson = DataPerson(numero_identificacion = form.cleaned_data['numero_identificacion'])
   			form.save()
-  			return HttpResponseRedirect('/gracias')
+
+  			return HttpResponseRedirect('AcademicHistory')
 	else:
 		form = NewDataperson()
 
@@ -35,20 +39,19 @@ def addDataPersonForm(request):
     	'form':form,
     	})
 
-	'''
+def addAcademicHystory(request):
 	if request.method == 'POST':
-  		form = DataPersonForm(request.POST)
+  		form = NewAcademicHystory(request.POST)
   		if form.is_valid():
-  			return HttpResponseRedirect('/gracias')
-  	else:
-		form = DataPersonForm()
+  			form.save()
 
-	return render(request,'registro.html', {
+  			return HttpResponseRedirect('/')
+	else:
+		form = NewAcademicHystory()
+
+	return render(request,'registro_HystoryAcademic.html', {
     	'form':form,
-    	})'''
-
-
-
+    	})
 
 
 def gracias(request):

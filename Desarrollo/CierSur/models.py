@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib import admin
+from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 #Construido Por Mauro Castillo 
 
@@ -16,14 +17,17 @@ class BodyPanelAdmin(models.Model):
 
 class DataPerson(models.Model):
 	def __unicode__(self):
-		return '%s' % (self.user) 
+		return '%s' % (self.nombre) 
 	#datos personales
 	#indentificador primario base de datos
 	id = models.AutoField(primary_key=True)
 	numero_identificacion = models.CharField(max_length = 30)
    	nombre = models.CharField(max_length = 30)
 	apellido = models.CharField(max_length = 30)
-	fecha_de_Nacimiento = models.DateTimeField()
+	year_de_Nacimiento = models.ForeignKey('Year')
+	dia_de_Nacimiento = models.ForeignKey('Day')
+	mes_de_Nacimiento = models.ForeignKey('Month')
+
 	departemento = models.ForeignKey('Departamento') # son llaves foraneas a la ubicion
 	municipio =	models.ForeignKey('Municipio') #Son llaves foraneas a la ubicaion 
 	residencia = models.CharField(max_length = 30)
@@ -32,12 +36,12 @@ class AcademicHystory(models.Model):
 #Historial academico este historial es enlazado como foren key a una persona
 	def __unicode__(self):
 		return self
-	idDataPerson = models.IntegerField() # son llaves foraneas a la DataPerson
-	TitleName = models.CharField(max_length = 30)
-	DateStart = models.DateTimeField()
-	DateEnd = models.DateTimeField()
-	InstitutionName = models.CharField(max_length = 120)
-	Descripcion = models.TextField();
+	numero_identificacion = models.CharField(max_length = 30) # son llaves foraneas a la DataPerson
+	titulo_Obtenido = models.CharField(max_length = 30)
+	year_Inicio = models.ForeignKey('Year')
+	duracion_Dias = models.IntegerField()
+	institucion = models.CharField(max_length = 120)
+	descripcion = models.TextField();
 	
 class WorkHistory(models.Model):
 	#History laboral va enlazado con el id de los datos personsales
@@ -55,21 +59,39 @@ class Course(models.Model):
 	DateStart = models.DateTimeField()
 	DateEnd = models.DateTimeField()
 
-#Informacion regional mauricio Castillo
+#Informacion regional ______________________Mauricio Castillo___________________________________Recursos____________________________________________________
 class Departamento(models.Model):
 		#Constructor por defecto
 	def __unicode__(self):
-              return self.nombre
+		return self.nombre
 	iddepartamento = models.CharField(max_length = 50)
 	nombre = models.CharField(max_length = 50)
 
 class Municipio(models.Model):
 		#Constructor por defecto
 	def __unicode__(self):
-              return self.nombreMunicipio
+		return self.nombreMunicipio
 	idmunicipio = models.CharField(max_length = 50)
 	nombreMunicipio = models.CharField(max_length = 50)
 	departamento_iddepartamento = models.CharField(max_length = 50)
+
+class Year(models.Model):
+		#Constructor por defecto
+	def __unicode__(self):
+		return self.year
+	year = models.CharField(max_length = 50)
+
+class Day(models.Model):
+		#Constructor por defecto
+	def __unicode__(self):
+		return self.day
+	day = models.CharField(max_length = 50)
+class Month(models.Model):
+		#Constructor por defecto
+	def __unicode__(self):
+		return self.month
+	month = models.CharField(max_length = 50)
+
 #Fin informacion regional
 
 
@@ -79,6 +101,9 @@ class MainPost(admin.ModelAdmin):
 	lis_display = ('Title','Body') 
 
 #Agrego el modelo al panel de administracion
+admin.site.register(Day)
+admin.site.register(Month)
+admin.site.register(Year)
 admin.site.register(Departamento)
 admin.site.register(Municipio)
 admin.site.register(BodyPanelAdmin, MainPost)

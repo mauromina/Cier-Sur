@@ -18,5 +18,6 @@ urlpatterns = patterns('',
 
 #Mauro castillo Funcionalida
     url(r'^registro/$', 'CierSur.views.addDataPersonForm', name='registro'),
+    url(r'^registro/AcademicHistory/$', 'CierSur.views.addAcademicHystory', name='registroAcademic'),   #Resgistro de la informacion academica
     url(r'^gracias/$', 'CierSur.views.gracias', name='gracias'),
 )
