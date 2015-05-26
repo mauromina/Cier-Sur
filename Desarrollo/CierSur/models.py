@@ -16,7 +16,7 @@ class BodyPanelAdmin(models.Model):
 
 class DataPerson(models.Model):
 	def __unicode__(self):
-		return self
+		return '%s' % (self.user) 
 	#datos personales
 	#indentificador primario base de datos
 	id = models.AutoField(primary_key=True)
@@ -24,9 +24,9 @@ class DataPerson(models.Model):
    	nombre = models.CharField(max_length = 30)
 	apellido = models.CharField(max_length = 30)
 	fecha_de_Nacimiento = models.DateTimeField()
-	departemento = models.IntegerField() # son llaves foraneas a la ubicion
+	departemento = models.ForeignKey('Departamento') # son llaves foraneas a la ubicion
 	municipio =	models.ForeignKey('Municipio') #Son llaves foraneas a la ubicaion 
-	residencia = models.ForeignKey('Departamento')
+	residencia = models.CharField(max_length = 30)
 	 # creo llave foranea a departamento
 class AcademicHystory(models.Model):
 #Historial academico este historial es enlazado como foren key a una persona
@@ -59,7 +59,7 @@ class Course(models.Model):
 class Departamento(models.Model):
 		#Constructor por defecto
 	def __unicode__(self):
-              return self
+              return self.nombre
 	iddepartamento = models.CharField(max_length = 50)
 	nombre = models.CharField(max_length = 50)
 
