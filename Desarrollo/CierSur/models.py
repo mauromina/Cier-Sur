@@ -38,17 +38,24 @@ class DataPerson(models.Model):
 	area_de_inscripcion = models.ForeignKey('Areas')
 	tiene_usuario_Colombia_Aprende = models.BooleanField()
 
-	 # creo llave foranea a departamento
+# Recolección de datos adicional______________________________Mauro Castillo________________________________
 class AcademicHystory(models.Model):
 #Historial academico este historial es enlazado como foren key a una persona
 	def __unicode__(self):
 		return '%s' % (self.numero_identificacion)
-	numero_identificacion = models.ForeignKey('DataPerson')  # son llaves foraneas a la DataPerson
+	numero_identificacion = models.CharField(max_length = 30)  # son llaves foraneas a la DataPerson
+	year_de_Nacimiento = models.ForeignKey('Year')
+	dia_de_Nacimiento = models.ForeignKey('Day')
+	mes_de_Nacimiento = models.ForeignKey('Month')
+	sexo = models.ForeignKey('Sex')
+	zona_donde_labora = models.ForeignKey('Zona')
+	Labor_docente_institucion = models.ForeignKey('Zona')
+
 	titulo_Obtenido = models.CharField(max_length = 30)
 	year_Inicio = models.ForeignKey('Year')
 	duracion_Dias = models.IntegerField()
 	institucion = models.CharField(max_length = 120)
-	descripcion = models.TextField();
+	descripcion = models.TextField('Caracter');
 	
 class WorkHistory(models.Model):
 	#History laboral va enlazado con el id de los datos personsales
@@ -114,6 +121,16 @@ class Areas(models.Model):
 	def __unicode__(self):
 		return self.areas
 	areas = models.CharField(max_length = 30)
+
+class Zona(models.Model):
+	def __unicode__(self):
+		return self.zona
+	zona = models.CharField(max_length = 30)
+
+class Caracter(models.Model):
+	def __unicode__(self):
+		return self.caracter
+	caracter = models.CharField(max_length = 30)
 
 #Fin informacion regional
 
