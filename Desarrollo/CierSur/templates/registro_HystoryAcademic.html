@@ -7,7 +7,7 @@
 <link rel="stylesheet"  href="{% static 'css/main.css' %}">
 <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-<title>Incribirse como Aspirante</title>
+<title>Informacion Academica</title>
 </head><body>
 <nav class = "se-gris padding-largo">
   <ul class ="no-lista text-center">
@@ -18,12 +18,12 @@
 </nav>
 <section>
   <div class = "text-center">
-    <h1 class ="pacifico grande azul"> Registro </h1>
+    <h1 class ="pacifico grande azul"> Informacion academica </h1>
     <div id="parrafo">
     
 <!--Mauro castillo Creacion de formulario renderin persona-->
 <!--Esto es un comentario-->
-      <form action="/AcademicHistory/" method="POST">{% csrf_token %}
+      <form action="/registro/AcademicHistory/" method="POST">{% csrf_token %}
           {{ form.as_p }}
         <input type="submit" name="submit" value="Ingresar Informacion">
       </form>

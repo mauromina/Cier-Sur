@@ -20,7 +20,7 @@ class DataPerson(models.Model):
 		return '%s' % (self.nombre) 
 	#datos personales
 	#indentificador primario base de datos
-	id = models.AutoField(primary_key=True)
+	
 	numero_identificacion = models.CharField(max_length = 30)
    	nombre = models.CharField(max_length = 30)
 	apellido = models.CharField(max_length = 30)
@@ -35,8 +35,8 @@ class DataPerson(models.Model):
 class AcademicHystory(models.Model):
 #Historial academico este historial es enlazado como foren key a una persona
 	def __unicode__(self):
-		return self
-	numero_identificacion = models.CharField(max_length = 30) # son llaves foraneas a la DataPerson
+		return '%s' % (self.numero_identificacion)
+	numero_identificacion = models.ForeignKey('DataPerson')  # son llaves foraneas a la DataPerson
 	titulo_Obtenido = models.CharField(max_length = 30)
 	year_Inicio = models.ForeignKey('Year')
 	duracion_Dias = models.IntegerField()
