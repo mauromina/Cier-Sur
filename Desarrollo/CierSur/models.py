@@ -38,24 +38,25 @@ class DataPerson(models.Model):
 	area_de_inscripcion = models.ForeignKey('Areas')
 	tiene_usuario_Colombia_Aprende = models.BooleanField()
 
-# Recolección de datos adicional______________________________Mauro Castillo________________________________
+# Recoleccion de datos adicional______________________________Mauro Castillo________________________________
 class AcademicHystory(models.Model):
 #Historial academico este historial es enlazado como foren key a una persona
 	def __unicode__(self):
-		return '%s' % (self.numero_identificacion)
+		return self.numero_identificacion
 	numero_identificacion = models.CharField(max_length = 30)  # son llaves foraneas a la DataPerson
-	year_de_Nacimiento = models.ForeignKey('Year')
+	#year_de_nacimiento = models.ForeignKey('Year')
+	#ano_de_Nacimiento = models.ForeignKey('Year')
 	dia_de_Nacimiento = models.ForeignKey('Day')
 	mes_de_Nacimiento = models.ForeignKey('Month')
 	sexo = models.ForeignKey('Sex')
 	zona_donde_labora = models.ForeignKey('Zona')
-	Labor_docente_institucion = models.ForeignKey('Zona')
+	Labor_docente_institucion = models.ForeignKey('Caracter')
 
 	titulo_Obtenido = models.CharField(max_length = 30)
 	year_Inicio = models.ForeignKey('Year')
 	duracion_Dias = models.IntegerField()
 	institucion = models.CharField(max_length = 120)
-	descripcion = models.TextField('Caracter');
+	descripcion = models.TextField(max_length = 128);
 	
 class WorkHistory(models.Model):
 	#History laboral va enlazado con el id de los datos personsales
