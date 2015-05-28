@@ -3,7 +3,13 @@ from django.contrib import admin
 from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 #Construido Por Mauro Castillo 
+'''
+Notas de funcionamiento la interfaces disponibles para el administrador solo estan disponibles
+a traves del adminitrator de django
 
+La creacion del los usuarios que tienien accesos a sistema lo realiza el administrador
+
+'''
 
 
 
@@ -20,7 +26,6 @@ class DataPerson(models.Model):
 		return '%s' % (self.nombre) 
 	#datos personales
 	#indentificador primario base de datos
-	
 	numero_identificacion = models.CharField(max_length = 30)
    	nombre = models.CharField(max_length = 30)
 	apellido = models.CharField(max_length = 30)
@@ -41,6 +46,7 @@ class DataPerson(models.Model):
 # Recoleccion de datos adicional______________________________Mauro Castillo________________________________
 class AditionalDate(models.Model):
 #Historial academico este historial es enlazado como foren key a una persona
+#Esta inteface esta disponible para todo los usuarios.
 	def __unicode__(self):
 		return self.numero_identificacion
 	numero_identificacion = models.CharField(max_length = 30)  # son llaves foraneas a la DataPerson
@@ -53,32 +59,49 @@ class AditionalDate(models.Model):
 	Labor_docente_institucion = models.ForeignKey('Caracter')
 	etno_educativamente_orientada_hacia = models.ForeignKey('Etnia')
 	nivel_escolar_de_su_labor = models.ForeignKey('Nivel_escolar')
-	experiencia_prescolar = models.IntegerField=()
-#------------------------------------------------------------------------experiencia laboral
-	experiencia_prescolar = models.IntegerField=()
-		
-
-	anos_de_experiencia_Basica_primaria = models.IntegerField=(
+#-----------------------Informacion laboral-------------------------------------#
+	experiencia_prescolar = models.IntegerField(
+		[MinValueValidator(0), MaxValueValidator(50)])
+			
+	anos_de_experiencia_Basica_primaria = models.IntegerField(
 		[MinValueValidator(0), MaxValueValidator(50)])
 
-	anos_de_experiencia_Basica_secundaria = models.IntegerField=(
+	anos_de_experiencia_Basica_secundaria = models.IntegerField(
 		[MinValueValidator(0), MaxValueValidator(50)])
 
-	anos_de_experiencia_Educion_media = models.IntegerField=(
+	anos_de_experiencia_Educion_media = models.IntegerField(
 		[MinValueValidator(0), MaxValueValidator(50)])
 
-	anos_de_experiencia_Educion_superior = models.IntegerField=(
+	anos_de_experiencia_Educion_superior = models.IntegerField(
 		[MinValueValidator(0), MaxValueValidator(50)])
-	
+#Esta clase contiene los registros de los curso y sus docentes asiganados.	
+#Esta interface esta disponivle para el administrados
 class Course(models.Model):
 	def __unicode__(self):
 		return self.CourseName
-	
+	Docente_encargado = models.ForeignKey('DataPerson')
 	CourseName = models.CharField(max_length = 30)
-	DateStart = models.DateTimeField()
-	DateEnd = models.DateTimeField()
+	Actividad_1 = models.ForeignKey('Actividades_curso')
+	Actividad_2 = models.ForeignKey('Actividades_curso')
+	Actividad_3 = models.ForeignKey('Actividades_curso')
+	Actividad_4 = models.ForeignKey('Actividades_curso')
+	Actividad_5 = models.ForeignKey('Actividades_curso')
 
-#Informacion regional ______________________Mauricio Castillo___________________________________Recursos____________________________________________________
+#Docentes que ha sido selecionados para asistir a los curso los represento como una relacion en la base de datos
+class Selecionados_Aspirantes(models.Model):
+	def __unicode__(self):
+		return self.Docentes
+	docente = models.ForeignKey('DataPerson')
+	
+#Curso persona esta clase contiene la relacion de muchos a muchos entre los docentes y los cursos disponibles
+#Esta interface es ta disponible para todos los usuarioa
+class Course_student(models.Model):
+	def __unicode__(self):
+		return self.curso
+	curso = models.ForeignKey('Course')
+	docente = models.ForeignKey('DataPerson')
+
+#Informacion regional ______________________Mauricio Castillo___________________________________Recursos_Y Artefactos utilizados___________________________________________________
 class Departamento(models.Model):
 		#Constructor por defecto
 	def __unicode__(self):
@@ -147,6 +170,11 @@ class Nivel_escolar(models.Model):
 		return self.nivel
 	nivel = models.CharField(max_length = 30)
 
+class Actividades_curso(models.Model):
+	def __unicode__(self):
+		return self.nombre
+	nombre = models.CharField(max_length = 20)
+	descripcion = models.TextField(max_length = 30)
 
 
 
@@ -161,6 +189,7 @@ class MainPost(admin.ModelAdmin):
 	lis_display = ('Title','Body') 
 
 #Agrego el modelo al panel de administracion
+admin.site.register(Actividades_curso)
 admin.site.register(Day)
 admin.site.register(Month)
 admin.site.register(Year)

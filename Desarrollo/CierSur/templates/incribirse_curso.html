@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset =	"utf-8">
+{%load static from staticfiles %}
+<link rel="stylesheet"  href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet"  href="{% static 'css/main.css' %}">
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+<title>Informacion Academica</title>
+</head><body>
+<nav class = "se-gris padding-largo">
+  <ul class ="no-lista text-center">
+    <li class="col-md-3 pantalla pacifico"> <a href="/" class="verde">Inicio </a></li>
+    <li class="col-md-3 pantalla pacifico"><a href="/ingreso/" class="verde">Ingreso </a></li>
+    <li class="col-md-3 pantalla pacifico"><a href="/reportes/" class="verde">Reportes </a></li>
+  </ul>
+</nav>
+<section>
+  <div class = "text-center">
+    <h1 class ="pacifico grande azul"> Recolección de datos adicional: Programa CREATIC del
+CIER­Sur </h1>
+    <div id="parrafo">
+      <h4>
+        Los datos adicionales recolectados en este formulario son privados y serán usados únicamente para la
+        realización de un estudio analítico en el ámbito del programa de formación CREATIC del CIER­Sur.<br>
+        Muchas gracias por su colaboración.
+      </h4>
+
+      <h3>
+        INFORMACION PROFESIONAL
+        <br>
+        <br>
+      </h3>
+    
+<!--Mauro castillo Creacion de formulario renderin persona-->
+<!--Esto es un comentario-->
+      <form action="/registro/AcademicHistory/" method="POST">{% csrf_token %}
+          {{ form.as_p }}
+        <input type="submit" name="submit" value="Ingresar Informacion">
+      </form>
+    </div>
+  </div>
+</section>
+</body>
+</html>
