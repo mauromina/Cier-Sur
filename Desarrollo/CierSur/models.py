@@ -10,9 +10,6 @@ a traves del adminitrator de django
 La creacion del los usuarios que tienien accesos a sistema lo realiza el administrador
 
 '''
-
-
-
 #Lo construi para realizar pruebas con los Temples
 class BodyPanelAdmin(models.Model):
 #Esta clase contiene la forma como sera mostrada la pantalle principal a los usuarios
@@ -82,10 +79,6 @@ class Course(models.Model):
 	Docente_encargado = models.ForeignKey('DataPerson')
 	CourseName = models.CharField(max_length = 30)
 	Actividad_1 = models.ForeignKey('Actividades_curso')
-	Actividad_2 = models.ForeignKey('Actividades_curso')
-	Actividad_3 = models.ForeignKey('Actividades_curso')
-	Actividad_4 = models.ForeignKey('Actividades_curso')
-	Actividad_5 = models.ForeignKey('Actividades_curso')
 
 #Docentes que ha sido selecionados para asistir a los curso los represento como una relacion en la base de datos
 class Selecionados_Aspirantes(models.Model):
@@ -101,7 +94,7 @@ class Course_student(models.Model):
 	curso = models.ForeignKey('Course')
 	docente = models.ForeignKey('DataPerson')
 
-#Informacion regional ______________________Mauricio Castillo___________________________________Recursos_Y Artefactos utilizados___________________________________________________
+#Informacion regional ______________________Mauricio Castillo______________________Recursos_Y Artefactos utilizados___________________________________________________
 class Departamento(models.Model):
 		#Constructor por defecto
 	def __unicode__(self):
@@ -173,22 +166,17 @@ class Nivel_escolar(models.Model):
 class Actividades_curso(models.Model):
 	def __unicode__(self):
 		return self.nombre
+	curso = models.ForeignKey('Course')
 	nombre = models.CharField(max_length = 20)
 	descripcion = models.TextField(max_length = 30)
 
-
-
-
-
-#Fin informacion regional
-
-
-
-		
+#Fin informacion regional		
 class MainPost(admin.ModelAdmin):
 	lis_display = ('Title','Body') 
 
 #Agrego el modelo al panel de administracion
+admin.site.register(Selecionados_Aspirantes)
+admin.site.register(Course_student)
 admin.site.register(Actividades_curso)
 admin.site.register(Day)
 admin.site.register(Month)
