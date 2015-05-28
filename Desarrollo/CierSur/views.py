@@ -28,10 +28,9 @@ def addDataPersonForm(request):
 	if request.method == 'POST':
   		form = NewDataperson(request.POST)
   		if form.is_valid():
-  			#objDataperson = DataPerson(numero_identificacion = form.cleaned_data['numero_identificacion'])
   			form.save()
 
-  			return HttpResponseRedirect('AcademicHistory')
+  			return HttpResponseRedirect('/gracias')
 	else:
 		form = NewDataperson()
 
