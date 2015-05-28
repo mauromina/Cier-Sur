@@ -30,7 +30,7 @@ def addDataPersonForm(request):
   		if form.is_valid():
   			form.save()
 
-  			return HttpResponseRedirect('/gracias')
+  			return HttpResponseRedirect('/AcademicHistory')
 	else:
 		form = NewDataperson()
 

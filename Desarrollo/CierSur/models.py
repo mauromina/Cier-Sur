@@ -57,20 +57,15 @@ class AditionalDate(models.Model):
 	etno_educativamente_orientada_hacia = models.ForeignKey('Etnia')
 	nivel_escolar_de_su_labor = models.ForeignKey('Nivel_escolar')
 #-----------------------Informacion laboral-------------------------------------#
-	experiencia_prescolar = models.IntegerField(
-		[MinValueValidator(0), MaxValueValidator(50)])
+	experiencia_prescolar = models.IntegerField()
 			
-	anos_de_experiencia_Basica_primaria = models.IntegerField(
-		[MinValueValidator(0), MaxValueValidator(50)])
+	anos_de_experiencia_Basica_primaria = models.IntegerField()
 
-	anos_de_experiencia_Basica_secundaria = models.IntegerField(
-		[MinValueValidator(0), MaxValueValidator(50)])
+	anos_de_experiencia_Basica_secundaria = models.IntegerField()
 
-	anos_de_experiencia_Educion_media = models.IntegerField(
-		[MinValueValidator(0), MaxValueValidator(50)])
+	anos_de_experiencia_Educion_media = models.IntegerField()
 
-	anos_de_experiencia_Educion_superior = models.IntegerField(
-		[MinValueValidator(0), MaxValueValidator(50)])
+	anos_de_experiencia_Educion_superior = models.IntegerField()
 #Esta clase contiene los registros de los curso y sus docentes asiganados.	
 #Esta interface esta disponivle para el administrados
 class Course(models.Model):
