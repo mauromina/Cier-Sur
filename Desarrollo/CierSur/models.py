@@ -63,18 +63,17 @@ class AditionalDate(models.Model):
 
 	anos_de_experiencia_Basica_secundaria = models.IntegerField()
 
-	anos_de_experiencia_Educion_media = models.IntegerField()
+	anos_de_experiencia_Educacion_media = models.IntegerField()
 
-	anos_de_experiencia_Educion_superior = models.IntegerField()
+	anos_de_experiencia_Educacion_superior = models.IntegerField()
 #Esta clase contiene los registros de los curso y sus docentes asiganados.	
 #Esta interface esta disponivle para el administrados
 class Course(models.Model):
 	def __unicode__(self):
 		return self.CourseName
-	Docente_encargado = models.ForeignKey('DataPerson')
+	Docente_encargado = models.ForeignKey('AditionalDate') #Master teacher
 	CourseName = models.CharField(max_length = 30)
-	Actividad_1 = models.ForeignKey('Actividades_curso')
-
+	descripcion = models.TextField()
 #Docentes que ha sido selecionados para asistir a los curso los represento como una relacion en la base de datos
 class Selecionados_Aspirantes(models.Model):
 	def __unicode__(self):
@@ -161,7 +160,6 @@ class Nivel_escolar(models.Model):
 class Actividades_curso(models.Model):
 	def __unicode__(self):
 		return self.nombre
-	curso = models.ForeignKey('Course')
 	nombre = models.CharField(max_length = 20)
 	descripcion = models.TextField(max_length = 30)
 

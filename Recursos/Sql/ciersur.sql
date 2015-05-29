@@ -1227,6 +1227,7 @@ INSERT INTO `ciersur_month`(`month`) VALUES ("12");
 
 INSERT INTO `ciersur_sex`(`sex`) VALUES ("Masculino");
 INSERT INTO `ciersur_sex`(`sex`) VALUES ("Femenino");
+INSERT INTO `ciersur_sex`(`sex`) VALUES ("Otros");
 
 INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Buenaventura");
 INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Amazonas");
