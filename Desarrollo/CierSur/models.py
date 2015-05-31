@@ -20,12 +20,12 @@ class BodyPanelAdmin(models.Model):
 
 class DataPerson(models.Model):
 	def __unicode__(self):
-		return '%s' % (self.nombre) 
+		return '%s' % (self.nombre_completo) 
 	#datos personales
 	#indentificador primario base de datos
 	numero_identificacion = models.CharField(max_length = 30)
-   	nombre = models.CharField(max_length = 30)
-	apellido = models.CharField(max_length = 30)
+   	nombre_completo = models.CharField(max_length = 30)
+	
 	ano_de_Nacimiento = models.ForeignKey('Year')
 	dia_de_Nacimiento = models.ForeignKey('Day')
 	mes_de_Nacimiento = models.ForeignKey('Month')
@@ -46,6 +46,7 @@ class AditionalDate(models.Model):
 #Esta inteface esta disponible para todo los usuarios.
 	def __unicode__(self):
 		return self.numero_identificacion
+
 	numero_identificacion = models.CharField(max_length = 30)  # son llaves foraneas a la DataPerson
 	#year_de_nacimiento = models.ForeignKey('Year')
 	ano_de_Nacimiento = models.ForeignKey('Year')
@@ -56,7 +57,25 @@ class AditionalDate(models.Model):
 	Labor_docente_institucion = models.ForeignKey('Caracter')
 	etno_educativamente_orientada_hacia = models.ForeignKey('Etnia')
 	nivel_escolar_de_su_labor = models.ForeignKey('Nivel_escolar')
-#-----------------------Informacion laboral-------------------------------------#
+
+#---------------------------------------------------------------Master Teacher------------------------------------------------------
+class Master_Teacher(models.Model):
+#Historial academico este historial es enlazado como foren key a una persona
+#Esta inteface esta disponible para todo los usuarios.
+	def __unicode__(self):
+		return self.nombre_completo
+	nombre_completo = models.CharField(max_length = 30)
+	numero_identificacion = models.CharField(max_length = 30)  # son llaves foraneas a la DataPerson
+	#year_de_nacimiento = models.ForeignKey('Year')
+	ano_de_Nacimiento = models.ForeignKey('Year')
+	dia_de_Nacimiento = models.ForeignKey('Day')
+	mes_de_Nacimiento = models.ForeignKey('Month')
+	sexo = models.ForeignKey('Sex')
+	zona_donde_labora = models.ForeignKey('Zona')
+	Labor_docente_institucion = models.ForeignKey('Caracter')
+	etno_educativamente_orientada_hacia = models.ForeignKey('Etnia')
+	nivel_escolar_de_su_labor = models.ForeignKey('Nivel_escolar')
+#--------------------------------------------------------------------------Informacion laboral-------------------------------------#
 	experiencia_prescolar = models.IntegerField()
 			
 	anos_de_experiencia_Basica_primaria = models.IntegerField()
@@ -71,20 +90,20 @@ class AditionalDate(models.Model):
 class Course(models.Model):
 	def __unicode__(self):
 		return self.CourseName
-	Docente_encargado = models.ForeignKey('AditionalDate')
+	Docente_encargado = models.ForeignKey('Master_Teacher')
 	CourseName = models.CharField(max_length = 30)
 
 #Docentes que ha sido selecionados para asistir a los curso los represento como una relacion en la base de datos
 class Selecionados_Aspirantes(models.Model):
 	def __unicode__(self):
-		return self.docente
+		return self.codigo_estudiante
+	codigo_estudiante = models.CharField(max_length = 30)
 	docente = models.ForeignKey('DataPerson')
 	
 #Curso persona esta clase contiene la relacion de muchos a muchos entre los docentes y los cursos disponibles
 #Esta interface es ta disponible para todos los usuarioa
 class Inscripcion_cursos(models.Model):
-	def __unicode__(self):
-		return self.curso
+
 	curso = models.ForeignKey('Course')
 	docente_a_inscribir = models.ForeignKey('Selecionados_Aspirantes')
 	
@@ -194,6 +213,7 @@ admin.site.register(Municipio)
 admin.site.register(BodyPanelAdmin, MainPost)
 admin.site.register(AditionalDate)
 admin.site.register(Inscripcion_cursos)
+admin.site.register(Master_Teacher)
 
 admin.site.register(Certificacion)
 admin.site.register(Course)

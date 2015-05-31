@@ -4,6 +4,7 @@ from CierSur.models import DataPerson
 from CierSur.models import AditionalDate
 from CierSur.models import Inscripcion_cursos
 from CierSur.models import estudiante_nota
+from CierSur.models import Master_Teacher
 
 #Esta clase no la estoy utulizando. se puede eliminar al finalizar el project 
 class  DataPersonForm(forms.Form):
@@ -37,4 +38,9 @@ class Curso_estudiante(ModelForm):
 class Curso_calificar(ModelForm):
 	class Meta:
 		model = estudiante_nota
+		fields = '__all__'
+
+class MasterTeacher(ModelForm):
+	class Meta:
+		model = Master_Teacher
 		fields = '__all__'

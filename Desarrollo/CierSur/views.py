@@ -7,8 +7,12 @@ from .forms import NewDataperson
 from .forms import NewAcademicHystory
 from .forms import Curso_estudiante
 from .forms import Curso_calificar
+from .forms import MasterTeacher
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
+import MySQLdb
+from django.shortcuts import render_to_response
+from django.db.models import Count
 
 
 # Create your views here.
@@ -34,13 +38,14 @@ def login(request):
 	mi_contexto = Context({'posts': cuerpo})
 	return HttpResponse(mi_template.render(mi_contexto))
 
+#Agregar datos Personales del docente
 def addDataPersonForm(request):
 	if request.method == 'POST':
   		form = NewDataperson(request.POST)
   		if form.is_valid():
   			form.save()
 
-  			return HttpResponseRedirect('/academicHistory')
+  			return HttpResponseRedirect('/')
 	else:
 		form = NewDataperson()
 
@@ -48,7 +53,7 @@ def addDataPersonForm(request):
     	'form':form,
     	})
 
-
+#agregar Informacion adicional de docente
 def addAcademicHystory(request):
 	if request.method == 'POST':
   		form = NewAcademicHystory(request.POST)
@@ -62,8 +67,24 @@ def addAcademicHystory(request):
 	return render(request,'registro_HystoryAcademic.html', {
     	'form':form,
     	})
+#agregar master teacher
+def addMasterTeacher(request):
+  if request.method == 'POST':
+      form = MasterTeacher(request.POST)
+      if form.is_valid():
+        form.save()
+        print "Estube aqui"
+
+        return HttpResponseRedirect('/')
+  else:
+    form = MasterTeacher()
 
 
+  return render(request,'MasterTeacher.html', {
+      'form':form,
+      })
+
+#creacion de cursos
 def curso_estudiante(request):
 	if request.method == 'POST':
   		form = Curso_estudiante(request.POST)
@@ -93,3 +114,8 @@ def curso_calificar(request):
       })
 
 
+def cuerpo(request):
+  cuerpo = Inscripcion_cursos.objects.values('id').annotate(jobtitle_count=Count('curso')).order_by('-jobtitle_count')[:5]
+  mi_template =loader.get_template("cuerpo.html")
+  mi_contexto = Context({'names': cuerpo})
+  return HttpResponse(mi_template.render(mi_contexto))
