@@ -5,7 +5,8 @@ from django.http import HttpResponse
 from CierSur.models import *
 from .forms import NewDataperson
 from .forms import NewAcademicHystory
-
+from .forms import Curso_estudiante
+from .forms import Curso_calificar
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 
@@ -16,6 +17,15 @@ from django.core.context_processors import csrf
 
 class HomeView(TemplateView):
 	template_name = 'home.html'
+class ReportView(TemplateView):
+  template_name = 'reportes.html'
+
+class InView(TemplateView):
+  template_name = 'ingreso.html'
+
+
+class RegisterView(TemplateView):
+  template_name = 'registro.html'
 
 
 def login(request):
@@ -30,13 +40,14 @@ def addDataPersonForm(request):
   		if form.is_valid():
   			form.save()
 
-  			return HttpResponseRedirect('/AcademicHistory')
+  			return HttpResponseRedirect('/academicHistory')
 	else:
 		form = NewDataperson()
 
 	return render(request,'registro.html', {
     	'form':form,
     	})
+
 
 def addAcademicHystory(request):
 	if request.method == 'POST':
@@ -53,17 +64,32 @@ def addAcademicHystory(request):
     	})
 
 
-def gracias(request):
-	html = '<html><body>"Gracias por inscribirse..."</body></html>'
-	return HttpResponse(html)
+def curso_estudiante(request):
+	if request.method == 'POST':
+  		form = Curso_estudiante(request.POST)
+  		if form.is_valid():
+  			form.save()
+
+  			return HttpResponseRedirect('/')
+	else:
+		form = Curso_estudiante()
+
+	return render(request,'curso_estudiante.html', {
+    	'form':form,
+    	})
+#Funcionalida de calificar
+def curso_calificar(request):
+  if request.method == 'POST':
+      form = Curso_calificar(request.POST)
+      if form.is_valid():
+        form.save()
+
+        return HttpResponseRedirect('/')
+  else:
+    form = Curso_calificar()
+
+  return render(request,'calificar_curso.html', {
+      'form':form,
+      })
 
 
-class ReportView(TemplateView):
-	template_name = 'reportes.html'
-
-class InView(TemplateView):
-	template_name = 'ingreso.html'
-
-
-class RegisterView(TemplateView):
-	template_name = 'registro.html'

@@ -1227,7 +1227,6 @@ INSERT INTO `ciersur_month`(`month`) VALUES ("12");
 
 INSERT INTO `ciersur_sex`(`sex`) VALUES ("Masculino");
 INSERT INTO `ciersur_sex`(`sex`) VALUES ("Femenino");
-INSERT INTO `ciersur_sex`(`sex`) VALUES ("Otros");
 
 INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Buenaventura");
 INSERT INTO `ciersur_educationsecretary`(`secretary`) VALUES ("Amazonas");
@@ -1294,3 +1293,8 @@ INSERT INTO `ciersur_nivel_escolar`(`nivel`) VALUES ("Educación básica secunda
 INSERT INTO `ciersur_nivel_escolar`(`nivel`) VALUES ("Educación media (10°, 11°)");
 INSERT INTO `ciersur_nivel_escolar`(`nivel`) VALUES ("Nivel superior (Universidad / Educación Superior)");
 INSERT INTO `ciersur_nivel_escolar`(`nivel`) VALUES ("Otro:");
+
+INSERT INTO `ciersur_certificacion`(`nombre`) VALUES ("No defido");
+INSERT INTO `ciersur_certificacion`(`nombre`) VALUES ("Asistencia");
+INSERT INTO `ciersur_certificacion`(`nombre`) VALUES ("Participación");
+INSERT INTO `ciersur_certificacion`(`nombre`) VALUES ("Excelencia");

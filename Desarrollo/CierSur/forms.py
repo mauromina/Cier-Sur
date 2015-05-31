@@ -2,7 +2,10 @@ from django import forms
 from django.forms import ModelForm
 from CierSur.models import DataPerson
 from CierSur.models import AditionalDate
+from CierSur.models import Inscripcion_cursos
+from CierSur.models import estudiante_nota
 
+#Esta clase no la estoy utulizando. se puede eliminar al finalizar el project 
 class  DataPersonForm(forms.Form):
 	cedula = forms.CharField(max_length = 50)
 	nombre = forms.CharField(max_length = 50)
@@ -23,4 +26,15 @@ class NewDataperson(ModelForm):
 class NewAcademicHystory(ModelForm):
 	class Meta:
 		model = AditionalDate
+		fields = '__all__'
+
+class Curso_estudiante(ModelForm):
+	class Meta:
+		model = Inscripcion_cursos
+		fields = '__all__'
+
+
+class Curso_calificar(ModelForm):
+	class Meta:
+		model = estudiante_nota
 		fields = '__all__'

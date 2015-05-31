@@ -63,30 +63,39 @@ class AditionalDate(models.Model):
 
 	anos_de_experiencia_Basica_secundaria = models.IntegerField()
 
-	anos_de_experiencia_Educacion_media = models.IntegerField()
+	anos_de_experiencia_Educion_media = models.IntegerField()
 
-	anos_de_experiencia_Educacion_superior = models.IntegerField()
+	anos_de_experiencia_Educion_superior = models.IntegerField()
 #Esta clase contiene los registros de los curso y sus docentes asiganados.	
 #Esta interface esta disponivle para el administrados
 class Course(models.Model):
 	def __unicode__(self):
 		return self.CourseName
-	Docente_encargado = models.ForeignKey('AditionalDate') #Master teacher
+	Docente_encargado = models.ForeignKey('AditionalDate')
 	CourseName = models.CharField(max_length = 30)
-	descripcion = models.TextField()
+
 #Docentes que ha sido selecionados para asistir a los curso los represento como una relacion en la base de datos
 class Selecionados_Aspirantes(models.Model):
 	def __unicode__(self):
-		return self.Docentes
+		return self.docente
 	docente = models.ForeignKey('DataPerson')
 	
 #Curso persona esta clase contiene la relacion de muchos a muchos entre los docentes y los cursos disponibles
 #Esta interface es ta disponible para todos los usuarioa
-class Course_student(models.Model):
+class Inscripcion_cursos(models.Model):
 	def __unicode__(self):
 		return self.curso
 	curso = models.ForeignKey('Course')
-	docente = models.ForeignKey('DataPerson')
+	docente_a_inscribir = models.ForeignKey('Selecionados_Aspirantes')
+	
+
+class estudiante_nota(models.Model):
+	def __unicode__(self):
+		return self.curso	
+	estudiante = models.ForeignKey('Selecionados_Aspirantes')
+	curso = models.ForeignKey('Course')
+	certificado_obtenido = models.ForeignKey('Certificacion') #Tipo de certificado que recibe el docente.
+
 
 #Informacion regional ______________________Mauricio Castillo______________________Recursos_Y Artefactos utilizados___________________________________________________
 class Departamento(models.Model):
@@ -160,8 +169,15 @@ class Nivel_escolar(models.Model):
 class Actividades_curso(models.Model):
 	def __unicode__(self):
 		return self.nombre
+	curso = models.ForeignKey('Course')
 	nombre = models.CharField(max_length = 20)
 	descripcion = models.TextField(max_length = 30)
+
+class Certificacion(models.Model):
+	def __unicode__(self):
+		return self.nombre
+	nombre = models.CharField(max_length = 20)
+
 
 #Fin informacion regional		
 class MainPost(admin.ModelAdmin):
@@ -169,7 +185,6 @@ class MainPost(admin.ModelAdmin):
 
 #Agrego el modelo al panel de administracion
 admin.site.register(Selecionados_Aspirantes)
-admin.site.register(Course_student)
 admin.site.register(Actividades_curso)
 admin.site.register(Day)
 admin.site.register(Month)
@@ -178,7 +193,9 @@ admin.site.register(Departamento)
 admin.site.register(Municipio)
 admin.site.register(BodyPanelAdmin, MainPost)
 admin.site.register(AditionalDate)
+admin.site.register(Inscripcion_cursos)
 
+admin.site.register(Certificacion)
 admin.site.register(Course)
 admin.site.register(Nivel_escolar)
 admin.site.register(Zona)
