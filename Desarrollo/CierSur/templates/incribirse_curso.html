@@ -11,14 +11,14 @@
 </head><body>
 <nav class = "se-gris padding-largo">
   <ul class ="no-lista text-center">
-    <li class="col-md-3 pantalla pacifico"> <a href="/" class="verde">Inicio </a></li>
-    <li class="col-md-3 pantalla pacifico"><a href="/ingreso/" class="verde">Ingreso </a></li>
-    <li class="col-md-3 pantalla pacifico"><a href="/reportes/" class="verde">Reportes </a></li>
+    <li class="col-md-3 pantalla "> <a href="/" class="verde">Inicio </a></li>
+    <li class="col-md-3 pantalla "><a href="/ingreso/" class="verde">Ingreso </a></li>
+    <li class="col-md-3 pantalla "><a href="/reportes/" class="verde">Reportes </a></li>
   </ul>
 </nav>
 <section>
   <div class = "text-center">
-    <h1 class ="pacifico grande azul"> Recolección de datos adicional: Programa CREATIC del
+    <h1 class =" grande azul"> Recolección de datos adicional: Programa CREATIC del
 CIER­Sur </h1>
     <div id="parrafo">
       <h4>
@@ -37,7 +37,7 @@ CIER­Sur </h1>
 <!--Esto es un comentario-->
       <form action="/registro/AcademicHistory/" method="POST">{% csrf_token %}
           {{ form.as_p }}
-        <input type="submit" name="submit" value="Ingresar Informacion">
+        <input type="submit" class ="btn btn-primary" name="submit" value="Ingresar Informacion">
       </form>
     </div>
   </div>

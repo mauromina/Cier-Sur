@@ -28,15 +28,13 @@
 
 	<section>
 		<div class = "text-center">			
-			<h1 class ="pacifico grande azul">
-				Login
-			</h1>
+			
               <div id="CuerpoText"> <strong id="docs-internal-guid-38d814e7-d357-93f8-4477-bccc5bfa7d9d">SGC-HYDRA</strong>
     <p>Bienvenido a su sistema de gestion de cursos.
     --{{user.username}}</p>
     <div id="parrafo">
       <form id="AddEstudiante" name="AddEstudiante" method="POST">{% csrf_token%}
-        <h1>Iniciar sesión</h1>
+        <h1 class ="azul grande">Iniciar sesión</h1>
       <p>
           <label for="email">Usuario:</label>
           <span id="sprytextfield1">
@@ -48,7 +46,7 @@
         <input type="password" max-length = 20 placeholder= " Ingrese Su contraseña" id="password"/>       
       </p>
         <p>
-          <input type="submit" name="enviar" id="enviar" value="Iniciar Sesion" />
+          <input type="submit" class ="btn btn-primary" name="enviar" id="enviar" value="Iniciar Sesion" />
         </p>     
            
       </form>
