@@ -6,6 +6,7 @@ from CierSur.models import Inscripcion_cursos
 from CierSur.models import estudiante_nota
 from CierSur.models import Master_Teacher
 
+
 #Esta clase no la estoy utulizando. se puede eliminar al finalizar el project 
 class  DataPersonForm(forms.Form):
 	cedula = forms.CharField(max_length = 50)
@@ -16,6 +17,7 @@ class  DataPersonForm(forms.Form):
 	direccion = forms.CharField(max_length = 50)
 	sexo = forms.CharField(max_length = 10)
 	fecha = forms.DateTimeField() 
+
 
 
 class NewDataperson(ModelForm):

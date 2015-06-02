@@ -40,6 +40,9 @@ class DataPerson(models.Model):
 	area_de_inscripcion = models.ForeignKey('Areas')
 	tiene_usuario_Colombia_Aprende = models.BooleanField()
 
+
+
+
 # Recoleccion de datos adicional______________________________Mauro Castillo________________________________
 class AditionalDate(models.Model):
 #Historial academico este historial es enlazado como foren key a una persona

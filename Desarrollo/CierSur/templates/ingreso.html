@@ -14,13 +14,19 @@
 
 	<nav class = "se-gris padding-largo">
 		<ul class ="no-lista text-center">
-			<a href="/ingreso/" class ="espacio-derecha">Ingreso</a>	
-			<a href="/registro/" class ="espacio-derecha">Registro</a>	
-			<a href="/reportes/" class ="espacio-derecha">Reportes</a>
+		
+
+            {% if user.is_authenticated %}
+            <a href="/calificar/" class ="espacio-derecha">Calificar</a>
+             <a href="/reportes/" class ="espacio-derecha">Reportes</a>
+            {% else %}
+            <a href="/registro/" class ="espacio-derecha">Registro</a>
+            <a href="/reportes/" class ="espacio-derecha">Reportes</a>
             <a href="/curso_estudiante/" class ="espacio-derecha">Incribirse a un Curso</a>
             <a href="/academicHistory/" class ="espacio-derecha">Registro de datos Profecionales</a>
-            <a href="/calificar/" class ="espacio-derecha">Calificar</a>
             <a href="/mastherteacher/" class ="espacio-derecha">Inscripcion Master Teacher</a>
+            {% endif %}
+            
             
 		</ul>
 
@@ -30,8 +36,16 @@
 		<div class = "text-center">			
 			
               <div id="CuerpoText"> <strong id="docs-internal-guid-38d814e7-d357-93f8-4477-bccc5bfa7d9d">SGC-HYDRA</strong>
+
+    {% if user.is_authenticated %}
     <p>Bienvenido a su sistema de gestion de cursos.
-    --{{user.username}}</p>
+    {{user.username}}</p>
+
+    <a href="cerrar/">Logout</a>
+
+
+    {% else %}
+
     <div id="parrafo">
       <form id="AddEstudiante" name="AddEstudiante" method="POST">{% csrf_token%}
         <h1 class ="azul grande">Iniciar sesión</h1>
@@ -43,13 +57,15 @@
 </p>
       <p>
   <label for="password">Contraseña:</label>
-        <input type="password" max-length = 20 placeholder= " Ingrese Su contraseña" id="password"/>       
+        <input type="password" name ="password" max-length = 20 placeholder= " Ingrese Su contraseña" id="password"/>       
       </p>
         <p>
           <input type="submit" class ="btn btn-primary" name="enviar" id="enviar" value="Iniciar Sesion" />
         </p>     
            
       </form>
+
+      {% endif %}
     </div>
 
 

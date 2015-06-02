@@ -14,6 +14,8 @@ import MySQLdb
 from django.shortcuts import render_to_response
 from django.db.models import Count
 
+from django.contrib.auth import authenticate, login
+
 
 # Create your views here.
 #Variables
@@ -32,11 +34,6 @@ class RegisterView(TemplateView):
   template_name = 'registro.html'
 
 
-def login(request):
-	cuerpo = user.objects.all()
-	mi_template =loader.get_template("index.html")
-	mi_contexto = Context({'posts': cuerpo})
-	return HttpResponse(mi_template.render(mi_contexto))
 
 #Agregar datos Personales del docente
 def addDataPersonForm(request):

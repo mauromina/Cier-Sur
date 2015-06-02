@@ -17,8 +17,8 @@ urlpatterns = patterns('',
     url(r'^reportes/$', ReportView.as_view()),
 
 #Mauro castillo Funcionalida
-    url(r'^ingreso/$' , 'django.contrib.auth.views.login', 
-        {'template_name' : 'ingreso.html'}, name = 'login'),
+ #   url(r'^ingreso/$' , 'django.contrib.auth.views.login', 
+  #      {'template_name' : 'ingreso.html'}, name = 'login'),
     url(r'^registro/$', 'CierSur.views.addDataPersonForm', name='registro'),
      url(r'^registro/academicHistory/$', 'CierSur.views.addAcademicHystory', name='registroAcademic'),   #Resgistro de la informacion academica
 
