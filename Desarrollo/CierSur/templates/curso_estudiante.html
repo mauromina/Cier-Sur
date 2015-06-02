@@ -16,8 +16,8 @@
 			<a href="/" class ="espacio-derecha">Ingreso</a>	
 			<a href="/registro/" class ="espacio-derecha">Registro</a>	
 			<a href="/reportes/" class ="espacio-derecha">Reportes</a>
-            <a href="/curso_estudiante/" class ="espacio-derecha">Incribirse a un Curso</a>
-            <a href="/academicHistory/" class ="espacio-derecha">Registro de datos Profecionales</a>
+
+            <a href="/academicHistory/" class ="espacio-derecha">Registro de datos Profesionales</a>
             <a href="/mastherteacher/" class ="espacio-derecha">Inscripcion Master Teacher</a>
   </ul>
 </nav>
@@ -41,7 +41,7 @@
 <!--Esto es un comentario-->
       <form action="" method="POST">{% csrf_token %}
           {{ form.as_p }}
-        <input type="submit" name="submit" value="Ingresar Informacion">
+        <input type="submit" class ="btn btn-primary" name="submit" value="Ingresar Informacion">
       </form>
     </div>
   </div>

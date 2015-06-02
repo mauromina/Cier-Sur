@@ -13,6 +13,9 @@ img{
 .espacio-arriba{
 	margin-top: 100px;
 }
+.espacio-abajo{
+	margin-bottom: 50px;
+}
 .pacifico{
 	font-family: 'Pacifico', cursive;
 }
