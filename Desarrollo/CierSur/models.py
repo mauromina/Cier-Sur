@@ -23,7 +23,7 @@ class DataPerson(models.Model):
 		return '%s' % (self.nombre_completo) 
 	#datos personales
 	#indentificador primario base de datos
-	numero_identificacion = models.CharField(max_length = 30)
+	numero_identificacion = models.CharField(max_length = 30,primary_key=True)
    	nombre_completo = models.CharField(max_length = 30)
 	
 	ano_de_Nacimiento = models.ForeignKey('Year')
@@ -50,7 +50,7 @@ class AditionalDate(models.Model):
 	def __unicode__(self):
 		return self.numero_identificacion
 
-	numero_identificacion = models.CharField(max_length = 30)  # son llaves foraneas a la DataPerson
+	numero_identificacion = models.ForeignKey('DataPerson')  # son llaves foraneas a la DataPerson
 	#year_de_nacimiento = models.ForeignKey('Year')
 	ano_de_Nacimiento = models.ForeignKey('Year')
 	dia_de_Nacimiento = models.ForeignKey('Day')
@@ -60,6 +60,29 @@ class AditionalDate(models.Model):
 	Labor_docente_institucion = models.ForeignKey('Caracter')
 	etno_educativamente_orientada_hacia = models.ForeignKey('Etnia')
 	nivel_escolar_de_su_labor = models.ForeignKey('Nivel_escolar')
+
+class AditionalDate2(models.Model):
+	numero_identificacion = models.ForeignKey('DataPerson') 
+	ELECCIONES4 = (('Ciencias Naturales y educacion ambiental.','Ciencias Naturales y educacion ambiental.'),('Ciencias Sociales: historia, geografia y constitucion politica','Ciencias Sociales: historia, geografia y constitucion politica'),('Educacion Artistica','Educacion Artistica'),('Educacion etica y valores humanos','Educacion etica y valores humanos'),('Educacion fisica recreacion y deportes','Educacion fisica recreacion y deportes'),('Educacion Religiosa','Educacion Religiosa'),('Humanidades, lengua castellana e idioma extranjero (ingles).','Humanidades, lengua castellana e idioma extranjero (ingles).'),('Matematicas.','Matematicas.'),('Tecnologia e Informatica','Tecnologia e Informatica'))
+	ELECCIONES3 = (('Transicion','Transicion'),('Educacion Inicial','Educacion Inicial'),('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8'),('9','9'),('10','10'),('11','11'))
+	ELECCIONES2 = (('Transicion','Transicion'),('Educacion Inicial','Educacion Inicial'),('Educacion basica primaria','Educacion basica primaria'),('Educacion basica secundaria','Educacion basica secundaria'),('Educacion media','Educacion media'),('Nivel superior','Nivel superior'))
+	ELECCIONES =(('',''),('Agropecuaria','Agropecuaria'),('Comercial','Comercial'),('Promocion Social','Promocion Social'),('Finanzas','Finanzas'),('Ecologia','Ecologia'),('Medio ambiente','Medio ambiente'),('Industrial','Industrial'),('Informatica','Informatica'),('Mineria','Mineria'),('Salud','Salud'),('Recreacion','Recreacion'),('Turismo','Turismo'),('Deporte','Deporte'),('Otras Modalidades','Otras Modalidades'))
+	modalidad = models.CharField(max_length=50,choices = ELECCIONES)
+	laboracademica = models.CharField(max_length=50,choices = ELECCIONES2)
+	desempeno = models.CharField(max_length=50,choices = ELECCIONES3)
+	areaformacion = models.CharField(max_length=50,choices = ELECCIONES4)
+	experiencia_prescolar = models.IntegerField()			
+	anos_de_experiencia_Basica_primaria = models.IntegerField()
+	anos_de_experiencia_Basica_secundaria = models.IntegerField()
+	anos_de_experiencia_Educion_media = models.IntegerField()
+	anos_de_experiencia_Educion_superior = models.IntegerField()
+	rural = models.IntegerField()
+	urbano = models.IntegerField()
+	publico = models.IntegerField()
+	privado = models.IntegerField()
+
+
+
 
 #---------------------------------------------------------------Master Teacher------------------------------------------------------
 class Master_Teacher(models.Model):
@@ -207,6 +230,7 @@ class MainPost(admin.ModelAdmin):
 
 #Agrego el modelo al panel de administracion
 admin.site.register(Selecionados_Aspirantes)
+
 admin.site.register(Actividades_curso)
 admin.site.register(Day)
 admin.site.register(Month)
@@ -215,6 +239,7 @@ admin.site.register(Departamento)
 admin.site.register(Municipio)
 admin.site.register(BodyPanelAdmin, MainPost)
 admin.site.register(AditionalDate)
+admin.site.register(AditionalDate2)
 admin.site.register(Inscripcion_cursos)
 admin.site.register(Master_Teacher)
 

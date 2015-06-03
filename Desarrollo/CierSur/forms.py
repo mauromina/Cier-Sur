@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from CierSur.models import DataPerson
-from CierSur.models import AditionalDate
+from CierSur.models import AditionalDate,AditionalDate2
 from CierSur.models import Inscripcion_cursos
 from CierSur.models import estudiante_nota
 from CierSur.models import Master_Teacher
@@ -25,6 +25,10 @@ class NewDataperson(ModelForm):
 		model = DataPerson
 		fields = '__all__'
 
+class NewLaboralHystory(ModelForm):
+	class Meta:
+		model = AditionalDate2
+		fields = '__all__'
 
 class NewAcademicHystory(ModelForm):
 	class Meta:

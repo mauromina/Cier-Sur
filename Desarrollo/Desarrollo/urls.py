@@ -14,14 +14,15 @@ urlpatterns = patterns('',
 # administrativa Sitio.
     #url(r'^registro/$' , RegisterView.as_view()),
     #url(r'^ingreso/$',InView.as_view()),
-    url(r'^reportes/$', ReportView.as_view()),
+    url(r'^reportes/$', 'CierSur.views.reportView', name = 'reportes'),
 
 #Mauro castillo Funcionalida
  #   url(r'^ingreso/$' , 'django.contrib.auth.views.login', 
   #      {'template_name' : 'ingreso.html'}, name = 'login'),
     url(r'^registro/$', 'CierSur.views.addDataPersonForm', name='registro'),
-     url(r'^registro/academicHistory/$', 'CierSur.views.addAcademicHystory', name='registroAcademic'),   #Resgistro de la informacion academica
-    url(r'^academicHistory/$', 'CierSur.views.addAcademicHystory', name='registroAcademic'),   #Resgistro de la informacion academica
+    url(r'^registro/academicHistory/$', 'CierSur.views.addAcademicHystory', name='registroAcademic'),   #Resgistro de la informacion academica
+     url(r'^registro/laboralHistory/$', 'CierSur.views.addLaboralHystory', name='registroLaboral'),
+   # url(r'^academicHistory/$', 'CierSur.views.addAcademicHystory', name='registroAcademic'),   #Resgistro de la informacion academica
     url(r'^curso_estudiante/$', 'CierSur.views.curso_estudiante', name='curso_estudiante'),   #Resgistro de la informacion academica
     url(r'^calificar/$', 'CierSur.views.curso_calificar', name='curso_calificar'),
     url(r'^mastherteacher/$', 'CierSur.views.addMasterTeacher', name='MasterTeacher'),
